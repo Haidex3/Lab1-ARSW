@@ -7,6 +7,8 @@ package edu.eci.arsw.blacklistvalidator;
 
 import java.util.List;
 
+import edu.eci.arsw.threads.CountThread;
+
 /**
  *
  * @author hcadavid
@@ -17,7 +19,12 @@ public class Main {
         HostBlackListsValidator hblv=new HostBlackListsValidator();
         List<Integer> blackListOcurrences=hblv.checkHost("200.24.34.55");
         System.out.println("The host was found in the following blacklists:"+blackListOcurrences);
-        
+
+        Thread t1 = new Thread(new CountThread(1,5));
+        Thread t2 = new Thread(new CountThread(10,15));
+
+        t1.start();
+        t2.start();
     }
     
 }
