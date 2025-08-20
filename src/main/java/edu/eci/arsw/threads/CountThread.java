@@ -10,8 +10,8 @@ package edu.eci.arsw.threads;
  * @author hcadavid
  */
 public class CountThread extends Thread{
-    private int A;
-    private int B;
+    private final int A;
+    private final int B;
 
     public CountThread(int A, int B){
         this.A = A;

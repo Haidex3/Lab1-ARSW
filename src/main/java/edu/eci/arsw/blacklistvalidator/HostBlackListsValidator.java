@@ -5,13 +5,13 @@
  */
 package edu.eci.arsw.blacklistvalidator;
 
-import edu.eci.arsw.spamkeywordsdatasource.HostBlacklistsDataSourceFacade;
-import edu.eci.arsw.threads.HostBlackListThread;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import edu.eci.arsw.spamkeywordsdatasource.HostBlacklistsDataSourceFacade;
+import edu.eci.arsw.threads.HostBlackListThread;
 
 /**
  *
@@ -72,39 +72,35 @@ public class HostBlackListsValidator {
         HostBlacklistsDataSourceFacade skds = HostBlacklistsDataSourceFacade.getInstance();
         int totalServers = skds.getRegisteredServersCount();
 
-        // Calcular tamaño de cada bloque
         int chunkSize = totalServers / N;
         int remainder = totalServers % N;
 
-        // Crear hilos
         HostBlackListThread[] threads = new HostBlackListThread[N];
         int start = 0;
         for (int i = 0; i < N; i++) {
-            int end = start + chunkSize + (i < remainder ? 1 : 0); // repartir equitativo
+            int end = start + chunkSize + (i < remainder ? 1 : 0);
             threads[i] = new HostBlackListThread(start, end, ipaddress, skds);
             threads[i].start();
             start = end;
         }
 
-        // Esperar a que todos terminen
         for (int i = 0; i < N; i++) {
             try {
                 threads[i].join();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.currentThread().interrupt(); 
+                throw new RuntimeException("Hilo interrumpido durante join", e);
             }
         }
 
-        // Combinar resultados
         int occurrencesCount = 0;
         int checkedListsCount = 0;
         for (HostBlackListThread t : threads) {
             blackListOccurrences.addAll(t.getOccurrences());
             occurrencesCount += t.getOccurrences().size();
-            checkedListsCount += (t.endIdx - t.startIdx); // cada hilo revisa este número
+            checkedListsCount += (t.endIdx - t.startIdx); 
         }
 
-        // Reportar confiable / no confiable
         if (occurrencesCount >= BLACK_LIST_ALARM_COUNT) {
             skds.reportAsNotTrustworthy(ipaddress);
         } else {

@@ -8,9 +8,9 @@ import edu.eci.arsw.spamkeywordsdatasource.HostBlacklistsDataSourceFacade;
 public class HostBlackListThread extends Thread {
     public int startIdx;
     public int endIdx;
-    private String ip;
-    private HostBlacklistsDataSourceFacade skds;
-    private List<Integer> localOccurrences;
+    private final String ip;
+    private final HostBlacklistsDataSourceFacade skds;
+    private final List<Integer> localOccurrences;
 
     public HostBlackListThread(int startIdx, int endIdx, String ip, HostBlacklistsDataSourceFacade skds) {
         this.startIdx = startIdx;
