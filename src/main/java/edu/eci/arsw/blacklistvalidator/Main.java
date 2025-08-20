@@ -17,16 +17,21 @@ public class Main {
     
     public static void main(String a[]){
         HostBlackListsValidator hblv=new HostBlackListsValidator();
+        /* parte original
         List<Integer> blackListOcurrences=hblv.checkHost("200.24.34.55");
-        System.out.println("The host was found in the following blacklists:"+blackListOcurrences);
+        System.out.println("The host was found in the following blacklists:"+blackListOcurrences);*/
+
+        List<Integer> blackListOccurrences = hblv.checkHost("200.24.34.55", 3);
+
+        System.out.println("The host was found in the following blacklists:" + blackListOccurrences);
 
         Thread t1 = new Thread(new CountThread(0,99));
         Thread t2 = new Thread(new CountThread(99,199));
         Thread t3 = new Thread(new CountThread(200,299));
 
-        t1.start();
-        t2.start();
-        t3.start();
+        //t1.start();
+        //t2.start();
+        //t3.start();
     }
     
 }
