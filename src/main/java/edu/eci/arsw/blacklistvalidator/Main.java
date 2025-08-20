@@ -20,11 +20,13 @@ public class Main {
         List<Integer> blackListOcurrences=hblv.checkHost("200.24.34.55");
         System.out.println("The host was found in the following blacklists:"+blackListOcurrences);
 
-        Thread t1 = new Thread(new CountThread(1,5));
-        Thread t2 = new Thread(new CountThread(10,15));
+        Thread t1 = new Thread(new CountThread(0,99));
+        Thread t2 = new Thread(new CountThread(99,199));
+        Thread t3 = new Thread(new CountThread(200,299));
 
         t1.start();
         t2.start();
+        t3.start();
     }
     
 }

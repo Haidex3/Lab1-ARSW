@@ -21,7 +21,13 @@ public class CountThread extends Thread{
     @Override
     public void run() {
         for (int i=A; i<= B; i++){
-            System.out.println(i);
+            System.out.println("[i" +getName() + "]" + i);
+            /* 
+            try{
+                Thread.sleep(100);
+            } catch (InterruptedException e){
+                e.printStackTrace();
+            }*/
         }
     }
 }
