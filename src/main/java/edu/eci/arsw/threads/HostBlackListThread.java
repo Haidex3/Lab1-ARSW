@@ -1,12 +1,13 @@
 package edu.eci.arsw.threads;
 
-import edu.eci.arsw.spamkeywordsdatasource.HostBlacklistsDataSourceFacade;
 import java.util.LinkedList;
 import java.util.List;
 
+import edu.eci.arsw.spamkeywordsdatasource.HostBlacklistsDataSourceFacade;
+
 public class HostBlackListThread extends Thread {
-    private int startIdx;
-    private int endIdx;
+    public int startIdx;
+    public int endIdx;
     private String ip;
     private HostBlacklistsDataSourceFacade skds;
     private List<Integer> localOccurrences;
