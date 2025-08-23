@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad5183f2-941d-43e2-9ddd-844825b5acce" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/eci/arsw/threads/CountThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/eci/arsw/threads/CountThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/eci/arsw/threads/CountThreadsMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/eci/arsw/threads/CountThreadsMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/eci/arsw/threads/HostBlackListThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/eci/arsw/threads/HostBlackListThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/eci/arsw/threads/PerformanceEvaluation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/eci/arsw/threads/PerformanceEvaluation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +74,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1755970740304</updated>
-      <workItem from="1755970743729" duration="583000" />
+      <workItem from="1755970743729" duration="945000" />
     </task>
     <servers />
   </component>
