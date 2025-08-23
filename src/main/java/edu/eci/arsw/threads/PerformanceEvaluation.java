@@ -10,7 +10,11 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
+import edu.eci.arsw.blacklistvalidator.HostBlackListsValidator;
+
 public class PerformanceEvaluation {
+
+    public static final HostBlackListsValidator hblv=new HostBlackListsValidator();
 
     private static final List<String> ipList = List.of(
         "202.24.34.55", "8.8.8.8", "1.1.1.1", "93.184.216.34", "198.41.0.4", "208.67.222.222",
@@ -33,33 +37,35 @@ public class PerformanceEvaluation {
         System.out.println(label);
         System.out.println("Número de hilos: " + threadCount);
 
-        ExecutorService executor = Executors.newFixedThreadPool(threadCount);
+        ExecutorService executor = Executors.newFixedThreadPool(threadCount); //Pool
         List<Future<String>> futures = new ArrayList<>();
 
-        long start = System.currentTimeMillis();
 
-        for (String ip : ipList) {
+        for (String ip : ipList) { //Enviar tareas al pool
             futures.add(executor.submit(() -> validateIP(ip)));
         }
 
-        for (Future<String> future : futures) {
+        for (Future<String> future : futures) { 
             System.out.println(future.get());
         }
 
         executor.shutdown();
         executor.awaitTermination(1, TimeUnit.MINUTES);
 
-        long end = System.currentTimeMillis();
-        System.out.println("⏱ Tiempo de ejecución: " + (end - start) + " ms");
     }
 
     private static String validateIP(String ip) {
-        try {
-            InetAddress address = InetAddress.getByName(ip);
-            boolean reachable = address.isReachable(3000); // 3 segundos de timeout
-            return ip + " → " + (reachable ? "🟢 Alcanzable" : "🔴 No alcanzable");
-        } catch (IOException e) {
-            return ip + " → ⚠️ Error: " + e.getMessage();
-        }
+    try {
+        InetAddress address = InetAddress.getByName(ip);
+
+        List<Integer> blacklists = hblv.checkHost(ip, 3);
+        //return ip + " " + blacklists;
+            
+        return "";
+
+    } catch (IOException e) {
+        return ip + "Error: " + e.getMessage();
     }
+}
+
 }
