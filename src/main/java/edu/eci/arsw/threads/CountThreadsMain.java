@@ -1,6 +1,6 @@
 /*
  * File: CountThreadsMain.java
- * Author: Haider Rodriguez (original author: hcadavid)
+ * Author: Haider Rodriguez and Emily Noreña (original author: hcadavid)
  * Date: 22-Aug-2025
  * Description: Main class to demonstrate the use of multiple CountThread instances.
  *              Creates three threads, each counting a specific numeric range,
