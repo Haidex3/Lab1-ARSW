@@ -1,6 +1,6 @@
 /*
  * File: HostBlackListThread.java
- * Author: Haider Rodriguez and Emily Noreña
+ * Author: Haider Rodriguez
  * Date: 22-Aug-2025
  * Description: Thread class for checking a range of blacklists to see if a given IP
  *              address appears. Each thread handles a subset of the blacklist servers
