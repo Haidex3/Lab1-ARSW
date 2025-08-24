@@ -17,11 +17,37 @@
 **Parte I - Introducción a Hilos en Java**
 
 1. De acuerdo con lo revisado en las lecturas, complete las clases CountThread, para que las mismas definan el ciclo de vida de un hilo que imprima por pantalla los números entre A y B.
+
+<img src="img/CountThread.png" width="550"/>
+
+Cada hilo creado recibe un rango de valores enteros [A, B] y, al ejecutarse, imprime en pantalla los números dentro de ese rango junto con el nombre del hilo que los generó.
+
+**Ciclo de vida del hilo**
+- Creación: Se instancia el objeto CountThread con los parámetros del rango.
+- Inicialización: El hilo se pone en estado nuevo (new).
+- Inicio: Al invocar start(), el hilo pasa al estado runnable.
+- Ejecución: El método run() se ejecuta, realizando la tarea de contar e imprimir.
+- Finalización: Cuando run() termina, el hilo entra en estado dead (muerto).
+
+---
+
+
 2. Complete el método __main__ de la clase CountMainThreads para que:
-	1. Cree 3 hilos de tipo CountThread, asignándole al primero el intervalo [0..99], al segundo [99..199], y al tercero [200..299].
-	2. Inicie los tres hilos con 'start()'.
-	3. Ejecute y revise la salida por pantalla. 
-	4. Cambie el incio con 'start()' por 'run()'. Cómo cambia la salida?, por qué?.
+	1. Cree 3 hilos de tipo CountThread, asignándole al primero el intervalo [0..99], al segundo [99..199], y al tercero [200..299]. 
+ 	2. Inicie los tres hilos con 'start()'.
+
+ 	<img src="img/CountThreadsMain.png" width="530"/>
+ 
+ 	3. Ejecute y revise la salida por pantalla. 
+		
+	<img src="img/StartExit.png" width="100"/>
+
+ 	4. Cambie el incio con 'start()' por 'run()'. Cómo cambia la salida?, por qué?.
+
+  	**Run**: No crea un nuevo hilo, ejecuta el método run() en el mismo hilo que lo invoca. No hay concurrencia.
+   
+   **Start**: Crea un nuevo hilo de ejecución. Internamente llama a run() pero en un hilo separado del principal.
+
 
 **Parte II - Ejercicio Black List Search**
 
