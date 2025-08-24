@@ -84,11 +84,24 @@ La clase HostBlackListThread es un hilo que busca en un rango de servidores si u
 - Registra los índices donde la IP fue encontrada.
 - Permite consultar las ocurrencias detectadas mediante getOccurrences().
 
+---
+
 2. Agregue al método 'checkHost' un parámetro entero N, correspondiente al número de hilos entre los que se va a realizar la búsqueda (recuerde tener en cuenta si N es par o impar!). Modifique el código de este método para que divida el espacio de búsqueda entre las N partes indicadas, y paralelice la búsqueda a través de N hilos. Haga que dicha función espere hasta que los N hilos terminen de resolver su respectivo sub-problema, agregue las ocurrencias encontradas por cada hilo a la lista que retorna el método, y entonces calcule (sumando el total de ocurrencuas encontradas por cada hilo) si el número de ocurrencias es mayor o igual a _BLACK_LIST_ALARM_COUNT_. Si se da este caso, al final se DEBE reportar el host como confiable o no confiable, y mostrar el listado con los números de las listas negras respectivas. Para lograr este comportamiento de 'espera' revise el método [join](https://docs.oracle.com/javase/tutorial/essential/concurrency/join.html) del API de concurrencia de Java. Tenga también en cuenta:
 
 	* Dentro del método checkHost Se debe mantener el LOG que informa, antes de retornar el resultado, el número de listas negras revisadas VS. el número de listas negras total (línea 60). Se debe garantizar que dicha información sea verídica bajo el nuevo esquema de procesamiento en paralelo planteado.
 
 	* Se sabe que el HOST 202.24.34.55 está reportado en listas negras de una forma más dispersa, y que el host 212.24.24.55 NO está en ninguna lista negra.
+
+<img src="img/checkHost1.png" width="600"/>
+
+<img src="img/checkHost2.png" width="630"/>
+
+El método checkHost permite verificar si una dirección IP sospechosa aparece en servidores de listas negras, distribuyendo la búsqueda en N hilos para mejorar el rendimiento. Cada hilo procesa un rango de servidores, almacena las ocurrencias encontradas y luego el método:
+- Espera a que todos los hilos terminen (join).
+- Combina las ocurrencias de cada hilo en una lista única.
+- Calcula el total de coincidencias encontradas.
+- Reporta el host como confiable o no confiable dependiendo si el número de ocurrencias supera BLACK_LIST_ALARM_COUNT.
+- Registra en el LOG la cantidad de listas revisadas vs. el total disponible.
 
 
 **Parte II.I Para discutir la próxima clase (NO para implementar aún)**
