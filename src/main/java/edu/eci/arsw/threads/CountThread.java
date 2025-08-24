@@ -1,6 +1,6 @@
 /*
  * File: CountThread.java
- * Author: Haider Rodriguez and Emily Noreña(original author: hcadavid)
+ * Author: Haider Rodriguez (original author: hcadavid)
  * Date: 22-Aug-2025
  * Description: Thread class that counts numbers within a specified range [A, B]
  *              and prints each number to the console along with the thread's name.

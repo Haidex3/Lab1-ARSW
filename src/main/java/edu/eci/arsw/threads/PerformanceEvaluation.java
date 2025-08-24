@@ -1,9 +1,3 @@
-/*
- * File: PerformanceEvaluation.java
- * Author: Haider Rodriguez and Emily Noreña
- * Date: 23-Aug-2025
- * Description: Performace evaluation using different thread pool sizes
- */
 package edu.eci.arsw.threads;
 
 import java.io.IOException;
@@ -18,11 +12,6 @@ import java.util.concurrent.TimeUnit;
 
 import edu.eci.arsw.blacklistvalidator.HostBlackListsValidator;
 
-/*
- * Class that evaluates the performance of validating IP addresses
- * against blacklists using different thread pool configurations.
- */
-
 public class PerformanceEvaluation {
 
     public static final HostBlackListsValidator hblv=new HostBlackListsValidator();
@@ -33,13 +22,6 @@ public class PerformanceEvaluation {
         "192.0.2.1", "192.88.99.1", "198.51.100.1", "192.0.43.10", "129.6.15.28", "17.253.144.10"
     );
 
-    /*
-     * Main method that runs performance tests with different thread pool sizes.
-     * @param args command-line arguments.
-     * @throws InterruptedException if thread execution is interrupted.
-     * @throws ExecutionException if an error occurs during task execution.
-     */
-
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         int cores = Runtime.getRuntime().availableProcessors(); //Núcleos
 
@@ -49,15 +31,6 @@ public class PerformanceEvaluation {
         run("50 hilos", 50);
         run("100 hilos", 100);
     }
-
-    /*
-     * Executes a validation test with a specific number of threads.
-     *
-     * @param label descriptive label of the test.
-     * @param threadCount number of threads in the pool.
-     * @throws InterruptedException if thread execution is interrupted.
-     * @throws ExecutionException if an error occurs in a task.
-     */
 
     private static void run(String label, int threadCount) throws InterruptedException, ExecutionException {
         System.out.println("\n");
@@ -72,7 +45,7 @@ public class PerformanceEvaluation {
             futures.add(executor.submit(() -> validateIP(ip)));
         }
 
-        for (Future<String> future : futures) {
+        for (Future<String> future : futures) { 
             System.out.println(future.get());
         }
 
@@ -81,20 +54,13 @@ public class PerformanceEvaluation {
 
     }
 
-    /*
-     * Validates an IP address by checking if it appears in blacklists.
-     *
-     * @param ip the IP address to validate.
-     * @return a string with the validation result.
-     */
-
     private static String validateIP(String ip) {
     try {
         InetAddress address = InetAddress.getByName(ip);
 
         List<Integer> blacklists = hblv.checkHost(ip, 3);
         //return ip + " " + blacklists;
-
+            
         return "";
 
     } catch (IOException e) {
