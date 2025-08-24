@@ -158,5 +158,11 @@ Este resultado inesperado puede deberse a que cuando hay más hilos que núcleos
 
 3. De acuerdo con lo anterior, si para este problema en lugar de 100 hilos en una sola CPU se pudiera usar 1 hilo en cada una de 100 máquinas hipotéticas, la ley de Amdahls se aplicaría mejor?. Si en lugar de esto se usaran c hilos en 100/c máquinas distribuidas (siendo c es el número de núcleos de dichas máquinas), se mejoraría?. Explique su respuesta.
 
+**1 hilo en cada una de 100 máquinas**
 
+En este caso tendríamos 100 núcleos físicos trabajando en paralelo, por lo tanto, la parte paralelizable del programa escalaría mejor y la Ley de Amdahl se aplicaría casi en su forma ideal. Sin embargo, tiene una limitación, ya que el costo de comunicación entre máquinas puede aparecer, pero si la tarea es independiente (embarrassingly parallel), la mejora sería casi lineal.
+
+**c hilos en 100/c máquinas**
+
+Cada máquina combina paralelismo interno (multinúcleo) con paralelismo distribuido, lo que disminuye el overhead de context switching, ya que cada núcleo puede ejecutar un hilo sin tanta competencia. De esta forma, el rendimiento mejora respecto al primer caso y resulta más eficiente que concentrar demasiados hilos en una sola CPU.
 
