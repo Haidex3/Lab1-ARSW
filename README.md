@@ -118,9 +118,22 @@ A partir de lo anterior, implemente la siguiente secuencia de experimentos para 
 4. 50 hilos.
 5. 100 hilos.
 
-Al iniciar el programa ejecute el monitor jVisualVM, y a medida que corran las pruebas, revise y anote el consumo de CPU y de memoria en cada caso. ![](img/jvisualvm.png)
+<img src="img/tests.jpg" width="600"/>
+
+---
+
+Al iniciar el programa ejecute el monitor jVisualVM, y a medida que corran las pruebas, revise y anote el consumo de CPU y de memoria en cada caso.
+
+<img src="img/jvisualvm_own.jpg" width="630"/>
+
+(Pantallazo propio)
+
+---
 
 Con lo anterior, y con los tiempos de ejecución dados, haga una gráfica de tiempo de solución vs. número de hilos. Analice y plantee hipótesis con su compañero para las siguientes preguntas (puede tener en cuenta lo reportado por jVisualVM):
+
+<img width="550" height="355" alt="threads vs time" src="https://github.com/user-attachments/assets/e9b5410b-dccd-456f-b719-970d0b2444dd" />
+
 
 **Parte IV - Ejercicio Black List Search**
 
