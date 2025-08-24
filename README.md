@@ -2,6 +2,7 @@
 ### Escuela Colombiana de Ingeniería
 ### Arquitecturas de Software - ARSW
 ## Ejercicio Introducción al paralelismo - Hilos - Caso BlackListSearch
+## Autores: Emily Noreña y Haider Rodriguez
 
 
 ### Dependencias:
